@@ -3,16 +3,13 @@ import json, os, urllib.request, urllib.error
 WEBHOOK = os.environ["DISCORD_WEBHOOK"]
 TEST = os.environ.get("TEST", "") == "true"
 
-# Aquí van los productos que quieres vigilar
 PRODUCTOS = [
-    PRODUCTOS = [
     {"nombre": "ETB 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-elite-trainer-box-ingles/00019621415880"},
     {"nombre": "ETB 30 Aniversario (Paris)", "url": "https://www.paris.cl/juego-de-cartas-pokemon-30th-elite-trainer-box-english-574897999.html"},
     {"nombre": "Tech Sticker 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/f/pokemon-caja-30-aniversario-tech-sticker-ingles/00019621415877"},
     {"nombre": "Binder Collection 30 Aniversario (Líder)", "url": "https://super.lider.cl/ip/jugueteria/caja-30-aniversario-binder-collection-ingles/00019621415867"},
     {"nombre": "Ex Box 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-ex-box-ingles-1u-surtido/00019621415872"},
     {"nombre": "TV TCL 32 QLED (Líder)", "url": "https://super.lider.cl/ip/00692173289492"},
-]
 ]
 
 SI_HAY = ["agregar al carro", "añadir al carro", "agregar al carrito", "comprar ahora"]
@@ -35,7 +32,7 @@ def hay_stock(url):
         html = urllib.request.urlopen(req, timeout=25).read().decode("utf-8", "ignore").lower()
     except Exception as e:
         print("No pude leer", url, e)
-        return None  # desconocido: no cambia el estado
+        return None
     if any(p in html for p in NO_HAY):
         return False
     return any(p in html for p in SI_HAY)
