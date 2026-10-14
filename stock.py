@@ -1,4 +1,4 @@
-import json, os, urllib.request, urllib.error
+import json, os, re, urllib.request, urllib.error
 
 WEBHOOK = os.environ["DISCORD_WEBHOOK"]
 TEST = os.environ.get("TEST", "") == "true"
@@ -14,7 +14,8 @@ PRODUCTOS = [
 
 SI_HAY = ["agregar al carro", "añadir al carro", "agregar al carrito", "comprar ahora"]
 NO_HAY = ["agotado", "sin stock", "no disponible"]
-CLAVES_DEBUG = SI_HAY + NO_HAY + ["outofstock", "out_of_stock", "instock", "in_stock", "availabilitystatus", "availability"]
+SCHEMA_SI = {"instock", "limitedavailability", "onlineonly", "preorder", "presale"}
+SCHEMA_NO = {"outofstock", "soldout", "discontinued"}
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36"
 
 
@@ -34,11 +35,14 @@ def hay_stock(url):
     except Exception as e:
         print("No pude leer", url, e)
         return None
-    print("   largo de la página:", len(html))
-    for clave in CLAVES_DEBUG:
-        i = html.find(clave)
-        if i != -1:
-            print("   [", clave, "]", html[max(0, i - 60):i + 90].replace("\n", " "))
+    m = re.search(r'"availability":"https?://schema\.org/(\w+)"', html)
+    schema = m.group(1) if m else None
+    print("   schema:", schema)
+    if schema in SCHEMA_SI:
+        return True
+    if schema in SCHEMA_NO:
+        return False
+    # Si no hay dato claro, usa palabras como respaldo
     if any(p in html for p in NO_HAY):
         return False
     return any(p in html for p in SI_HAY)
@@ -53,7 +57,6 @@ if TEST:
     enviar("✅ Prueba: el bot de restock está conectado a Discord.")
 
 for p in PRODUCTOS:
-    print("==", p["nombre"])
     ahora = hay_stock(p["url"])
     antes = estado.get(p["url"], False)
     print(p["nombre"], "->", ahora)
