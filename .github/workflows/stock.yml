@@ -16,7 +16,7 @@ jobs:
       - run: python stock.py
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-          TEST: ${{ github.event_name == 'workflow_dispatch' }}
+          TEST: "false"
       - run: |
           git config user.name "bot"
           git config user.email "bot@users.noreply.github.com"
