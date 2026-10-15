@@ -12,7 +12,7 @@ PRODUCTOS = [
     {"nombre": "Binder Collection 30 Aniversario (Líder)", "url": "https://super.lider.cl/ip/jugueteria/caja-30-aniversario-binder-collection-ingles/00019621415867"},
     {"nombre": "Ex Box 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-ex-box-ingles-1u-surtido/00019621415872"},
     {"nombre": "TV TCL 32 QLED (Líder)", "url": "https://super.lider.cl/ip/00692173289492"},
-    {"nombre": "Pokemon TCG: Colección de Alfileres Deluxe 25 Aniversario", "url": "https://www.lider.cl/ip/figuras-de-accion-y-coleccionables/pokemon-tcg-coleccion-de-alfileres-deluxe-25-aniversario/00082065080942?from=/search"},
+    {"nombre": "TCG Pokémon - Charizard Ex Super Premium Collection", "url": "https://www.lider.cl/ip/kidults/tcg-pokemon-charizard-ex-super-premium-collection/00082065085819?from=/search"},
 ]
 
 SI_HAY = ["agregar al carro", "añadir al carro", "agregar al carrito", "comprar ahora"]
