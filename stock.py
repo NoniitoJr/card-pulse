@@ -12,6 +12,7 @@ PRODUCTOS = [
     {"nombre": "Binder Collection 30 Aniversario (Líder)", "url": "https://super.lider.cl/ip/jugueteria/caja-30-aniversario-binder-collection-ingles/00019621415867"},
     {"nombre": "Ex Box 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-ex-box-ingles-1u-surtido/00019621415872"},
     {"nombre": "TV TCL 32 QLED (Líder)", "url": "https://super.lider.cl/ip/00692173289492"},
+    {"nombre": "Pokémon TCG: 30th Celebration Mini Tin ESPAÑOL", "url": "https://www.lider.cl/ip/kidults/pokemon-tcg-30th-celebration-mini-tin-espanol/00019621414637?from=/search"},
 ]
 
 SI_HAY = ["agregar al carro", "añadir al carro", "agregar al carrito", "comprar ahora"]
