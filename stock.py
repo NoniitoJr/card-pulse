@@ -2,6 +2,8 @@ import json, os, re, urllib.request, urllib.error
 
 WEBHOOK = os.environ["DISCORD_WEBHOOK"]
 TEST = os.environ.get("TEST", "") == "true"
+MI_ID = "530931920398319657"
+MENCION = f"<@{MI_ID}>"
 
 PRODUCTOS = [
     {"nombre": "ETB 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-elite-trainer-box-ingles/00019621415880"},
@@ -10,7 +12,7 @@ PRODUCTOS = [
     {"nombre": "Binder Collection 30 Aniversario (Líder)", "url": "https://super.lider.cl/ip/jugueteria/caja-30-aniversario-binder-collection-ingles/00019621415867"},
     {"nombre": "Ex Box 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-ex-box-ingles-1u-surtido/00019621415872"},
     {"nombre": "TV TCL 32 QLED (Líder)", "url": "https://super.lider.cl/ip/00692173289492"},
-    {"nombre": "Pokemon TcgWC(2025) Ing - Riley Mckay Flutter Devo Gardevoir", "url": "https://www.lider.cl/ip/juguetes-por-edad/pokemon-tcgwc-2025-ing-riley-mckay-flutter-devo-gardevoir/00780544042726?from=/search"},
+    {"nombre": "Figura Pokémon Moncolle MS-03 Sprigatito", "url": "https://www.lider.cl/ip/figuras-de-accion-y-coleccionables/figura-pokemon-moncolle-ms-03-sprigatito/00490481027011"},
 ]
 
 SI_HAY = ["agregar al carro", "añadir al carro", "agregar al carrito", "comprar ahora"]
@@ -43,7 +45,6 @@ def hay_stock(url):
         return True
     if schema in SCHEMA_NO:
         return False
-    # Si no hay dato claro, usa palabras como respaldo
     if any(p in html for p in NO_HAY):
         return False
     return any(p in html for p in SI_HAY)
@@ -55,7 +56,7 @@ except Exception:
     estado = {}
 
 if TEST:
-    enviar("✅ Prueba: el bot de restock está conectado a Discord.")
+    enviar(f"{MENCION} ✅ Prueba: si te suena esto en el teléfono, las alertas funcionan.")
 
 for p in PRODUCTOS:
     ahora = hay_stock(p["url"])
@@ -64,7 +65,7 @@ for p in PRODUCTOS:
     if ahora is None:
         continue
     if ahora and not antes:
-        enviar(f"🔔 ¡HAY STOCK! {p['nombre']}\n{p['url']}")
+        enviar(f"{MENCION} 🔔 ¡HAY STOCK! {p['nombre']}\n{p['url']}")
     estado[p["url"]] = ahora
 
 json.dump(estado, open("state.json", "w"), indent=1)
