@@ -12,6 +12,8 @@ PRODUCTOS = [
     {"nombre": "Binder Collection 30 Aniversario (Líder)", "url": "https://super.lider.cl/ip/jugueteria/caja-30-aniversario-binder-collection-ingles/00019621415867"},
     {"nombre": "Ex Box 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/kidults/caja-30-aniversario-ex-box-ingles-1u-surtido/00019621415872"},
     {"nombre": "TV TCL 32 QLED (Líder)", "url": "https://super.lider.cl/ip/00692173289492"},
+    {"nombre": "Poster Collection 30 Aniversario (Líder)", "url": "https://www.lider.cl/ip/f/pokemon-caja-30-aniversario-poster-collection-en/00019621415875"},
+    {"nombre": "Booster Bundle 30 Aniversario (Líder)", "url": "https://super.lider.cl/ip/jugueteria/00019621415884"},
 ]
 
 SI_HAY = ["agregar al carro", "añadir al carro", "agregar al carrito", "comprar ahora"]
